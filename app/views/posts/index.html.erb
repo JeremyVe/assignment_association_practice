@@ -1,0 +1,13 @@
+<ul>
+<% @posts.each do |post| %>
+	<li><%= link_to post.title, post_path(post) %></li>
+	<li><%= link_to "Edit Post", edit_post_path(post) %></li>
+	<li><%= post.category.name %></li>
+	<ul>
+		<% post.tags.each do |tag| %>
+			<li><%= tag.name %></li>
+		<% end %>
+	</ul>
+	<br>
+<% end %>
+</ul>

@@ -1,0 +1,27 @@
+// Place all the styles related to the post controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form-class {
+	color: hsla(230, 40%, 60%, 1);
+	font-size: 18px;
+	line-height: 27px;
+}
+
+.form-class input {
+	font-size: 20px;
+	color: hsl(230, 40%, 40%);
+	padding: 10px 15px;
+	border: 1px solid hsl(230, 40%, 60%);
+	border-radius: 15px;
+}
+
+
+.submit-class {
+	background-color: hsl(220, 40%, 60%);
+}
+
+#collection-radio {
+	color: red;
+	padding: 20px;
+}

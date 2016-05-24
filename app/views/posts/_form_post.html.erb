@@ -1,0 +1,42 @@
+<%= form_for(post, html: {class: 'form-class', id: "form-id"}) do |f| %>
+	
+	<%= f.label :title %>
+	<%= f.text_field :title %><br>
+
+	<%= f.label :body %>
+	<%= f.text_field :body %><br>
+
+	<div class="collection-class">
+		<%= f.label :tag %>
+		<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %><br>
+	</div>
+
+	<%= f.collection_radio_buttons(:category_id, Category.all, :id, :name, {id: "collection-radio"}) %><br>
+
+	<%= f.submit "Create Post", class: "submit-class" %>
+<% end %>
+
+<br><br><br>
+<%= form_for(post) do |f| %>
+	<%= f.collection_radio_buttons(:category_id, Category.all, :id, :name) %>
+	<%= f.submit "choose category" %>
+<% end %>
+
+<%= form_for(post) do |f| %>
+	<%= f.collection_select(:category_id, Category.all, :id, :name, {include_blank: true}) %>
+	<%= f.submit "choose category" %>
+<% end %>
+
+<% if post.persisted? %>
+	<%= form_tag("#{post_path(post)}", method: :patch) do %>
+		<%= select_tag("post[category_id]", options_for_select(@categories_options, @post.category_id)) %>
+		<%= submit_tag "choose category" %>
+	<% end %>
+<% end %>
+
+<%= form_for(post) do |f| %>
+	<%= f.collection_select(:tag_ids, Tag.all, :id, :name, {}, {multiple: true}) %>
+	<%= f.submit "Edit tags" %>
+		
+<% end %>
+  
