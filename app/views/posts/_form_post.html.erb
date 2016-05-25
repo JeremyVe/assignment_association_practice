@@ -13,8 +13,24 @@
 
 	<%= f.collection_radio_buttons(:category_id, Category.all, :id, :name, {id: "collection-radio"}) %><br>
 
+
+	<%= f.fields_for :comments do |comment_fields| %>
+		<%= comment_fields.label :body %>
+		<%= comment_fields.text_area :body %>
+
+		<% if comment_fields.object.persisted? %>
+			<%= comment_fields.label :_destroy, "Delete?" %>
+			<%= comment_fields.check_box :_destroy %>
+		<% end %>
+
+	<% end %>
+
 	<%= f.submit "Create Post", class: "submit-class" %>
 <% end %>
+
+
+
+
 
 <br><br><br>
 <%= form_for(post) do |f| %>
@@ -22,10 +38,17 @@
 	<%= f.submit "choose category" %>
 <% end %>
 
+
+
+
+
 <%= form_for(post) do |f| %>
 	<%= f.collection_select(:category_id, Category.all, :id, :name, {include_blank: true}) %>
 	<%= f.submit "choose category" %>
 <% end %>
+
+
+
 
 <% if post.persisted? %>
 	<%= form_tag("#{post_path(post)}", method: :patch) do %>
@@ -33,6 +56,9 @@
 		<%= submit_tag "choose category" %>
 	<% end %>
 <% end %>
+
+
+
 
 <%= form_for(post) do |f| %>
 	<%= f.collection_select(:tag_ids, Tag.all, :id, :name, {}, {multiple: true}) %>

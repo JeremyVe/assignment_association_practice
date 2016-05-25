@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   def new
     @categories_options = Category.all.map{ |c| [c.name, c.id] }
     @post = Post.new
+    @post.comments.build
   end
 
   def create
@@ -27,6 +28,7 @@ class PostsController < ApplicationController
   def edit
     @categories_options = Category.all.map{ |c| [c.name, c.id] }
     @post = Post.find(params[:id])
+    @post.comments.build
   end
 
   def update
@@ -43,6 +45,6 @@ class PostsController < ApplicationController
   private
 
   def whitelisted_params
-    params.require(:post).permit(:title, :body, :category_id, :tag_ids => [] )
+    params.require(:post).permit(:title, :body, :category_id, {:tag_ids => [], :comments_attributes => [:body, :id, :_destroy] } )
   end
 end

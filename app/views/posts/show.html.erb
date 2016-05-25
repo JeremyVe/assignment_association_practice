@@ -4,8 +4,17 @@
 
 <p><%= @post.category.name %></p>
 
+
+<h4>Tags :</h4>
 <ul>
 	<% @post.tags.each do |tag| %>
 		<li><%= tag.name %></li>
+	<% end %>
+</ul>
+
+<h4>Comments :</h4>
+<ul>
+	<% @post.comments.each do |comment| %>
+		<li><%= comment.body %></li>
 	<% end %>
 </ul>
